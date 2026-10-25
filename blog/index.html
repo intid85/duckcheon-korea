@@ -120,6 +120,212 @@
       .nav-links { display: none; }
       .featured-img { height: 250px; }
     }
+
+    .mobile-quick-nav { display: none; }
+    .float-btn .mob-label { display: none; }
+    @media (max-width: 768px) {
+      body {
+        padding-bottom: 68px;
+        line-height: 1.5;
+      }
+      .container {
+        padding: 0 14px;
+      }
+      .nav-wrap {
+        height: 56px;
+      }
+      .brand-name {
+        font-size: 1.08rem;
+      }
+      .brand-sub {
+        display: none;
+      }
+      .nav-cta-btn {
+        padding: 7px 12px;
+        font-size: 0.75rem;
+      }
+      .mobile-quick-nav {
+        display: block;
+        border-top: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.94);
+        padding: 6px 0;
+      }
+      .mobile-quick-pills {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .mobile-quick-pills::-webkit-scrollbar {
+        display: none;
+      }
+      .mobile-quick-pills a {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 11px;
+        border-radius: 999px;
+        font-size: 0.73rem;
+        font-weight: 600;
+        color: var(--navy);
+        background: var(--bg);
+        border: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+      .mobile-quick-pills a.pill-accent {
+        background: var(--navy);
+        color: #FFFFFF;
+        border-color: var(--navy);
+      }
+      .hero-banner {
+        padding: 18px 0 14px;
+      }
+      .tag-pill {
+        font-size: 0.64rem;
+        padding: 4px 10px;
+        margin-bottom: 8px;
+      }
+      .hero-banner h1 {
+        font-size: 1.52rem;
+        line-height: 1.18;
+        margin-bottom: 6px;
+      }
+      .hero-banner p {
+        font-size: 0.82rem;
+        line-height: 1.42;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .cat-bar {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        white-space: nowrap;
+        gap: 7px;
+        margin-top: 12px;
+        padding-bottom: 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .cat-bar::-webkit-scrollbar {
+        display: none;
+      }
+      .cat-chip {
+        padding: 6px 12px;
+        font-size: 0.74rem;
+        flex-shrink: 0;
+      }
+      .main-grid {
+        gap: 16px;
+        padding: 16px 0 24px;
+      }
+      .featured-card {
+        border-radius: 14px;
+        margin-bottom: 14px !important;
+      }
+      .featured-img {
+        height: 180px !important;
+      }
+      .featured-body {
+        padding: 16px 16px 18px !important;
+      }
+      .post-meta {
+        font-size: 0.7rem;
+        gap: 6px;
+        margin-bottom: 6px;
+      }
+      .featured-body h2 {
+        font-size: 1.18rem;
+        line-height: 1.25;
+        margin-bottom: 6px;
+      }
+      .featured-body p {
+        font-size: 0.8rem;
+        line-height: 1.42;
+        margin-bottom: 12px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .photo-strip {
+        display: none !important;
+      }
+      .featured-body .btn {
+        padding: 9px 14px;
+        font-size: 0.78rem;
+        width: 100%;
+        justify-content: center;
+      }
+      .sidebar-card {
+        padding: 16px;
+        border-radius: 14px;
+        margin-bottom: 12px;
+      }
+      aside .sidebar-card:nth-of-type(2) {
+        display: none;
+      }
+      .sidebar-card h3 {
+        font-size: 1.16rem;
+        margin-bottom: 6px;
+      }
+      .sidebar-card p {
+        font-size: 0.78rem;
+        margin-bottom: 10px;
+      }
+      .contact-stack {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 7px;
+      }
+      .contact-stack .btn {
+        padding: 8px 8px;
+        font-size: 0.72rem;
+      }
+      footer {
+        padding: 20px 0 24px;
+        font-size: 0.75rem;
+      }
+      .float-stack {
+        position: fixed;
+        bottom: 10px;
+        left: 12px;
+        right: 12px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+        background: rgba(15, 30, 46, 0.94);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 6px;
+        border-radius: 14px;
+        box-shadow: 0 10px 28px rgba(15, 23, 42, 0.32);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        align-items: stretch;
+      }
+      .float-btn {
+        padding: 9px 4px;
+        border-radius: 10px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        border: none;
+        box-shadow: none;
+        justify-content: center;
+        text-align: center;
+        white-space: nowrap;
+        width: 100%;
+      }
+      .float-btn .desk-label {
+        display: none !important;
+      }
+      .float-btn .mob-label {
+        display: inline !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -135,7 +341,16 @@
         <a href="../index.html#categories">Skincare Categories</a>
         <a href="../index.html#contact">Contact Us</a>
       </nav>
-      <a href="../index.html" class="btn btn-primary">Visit Official Site →</a>
+      <a href="../index.html" class="btn btn-primary nav-cta-btn">Official Site →</a>
+    </div>
+    <div class="mobile-quick-nav" aria-label="Mobile Quick Jump Navigation">
+      <div class="container mobile-quick-pills">
+        <a href="#articles" class="pill-accent">All Posts (3)</a>
+        <a href="../index.html#categories">Categories</a>
+        <a href="../index.html#why">Why Us</a>
+        <a href="#b2b-connect">Contact</a>
+        <a href="../index.html">Official Site &rarr;</a>
+      </div>
     </div>
   </header>
 
@@ -155,7 +370,7 @@
     </div>
   </section>
 
-  <main class="container main-grid">
+  <main id="articles" class="container main-grid">
     <div>
       <!-- Featured Post #0: Arocell Super Collagen Mask 2.0 Product Spotlight (NEW) -->
       <article class="featured-card" style="margin-bottom: 34px;">
@@ -243,7 +458,7 @@
     </div>
 
     <aside>
-      <div class="sidebar-card">
+      <div id="b2b-connect" class="sidebar-card">
         <span class="tag-pill">Connect With Us</span>
         <h3>Interested in Authentic Korean Cosmetics?</h3>
         <p>We share daily insights on Korean skincare and connect global partners directly with authentic K-Beauty products from South Korea via WhatsApp, WeChat, or Email (<a href="mailto:duckcheonkorea@gmail.com" style="color:var(--navy); font-weight:700; text-decoration:underline;">duckcheonkorea@gmail.com</a>).</p>
@@ -276,15 +491,18 @@
     </aside>
   </main>
 
-  <div class="float-stack">
-    <a href="mailto:duckcheonkorea@gmail.com?subject=Wholesale%20%26%20K-Beauty%20Sourcing%20Inquiry%20-%20DUCKCHEON%20KOREA" class="float-btn" style="background:var(--gold);">
-      <span>✉️ Email: duckcheonkorea@gmail.com</span>
+  <div class="float-stack" role="navigation" aria-label="Quick Direct Inquiry">
+    <a href="mailto:duckcheonkorea@gmail.com?subject=Wholesale%20%26%20K-Beauty%20Sourcing%20Inquiry%20-%20DUCKCHEON%20KOREA" class="float-btn float-email" style="background:var(--navy);">
+      <span class="desk-label">✉️ Email: duckcheonkorea@gmail.com</span>
+      <span class="mob-label">✉️ Email</span>
     </a>
-    <button onclick="copyWeChat()" class="float-btn" style="background:var(--wc);">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.032zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/></svg> <span>WeChat: intid85</span>
+    <button type="button" onclick="copyWeChat()" class="float-btn float-wc" style="background:var(--wc);">
+      <span class="desk-label">💬 WeChat: intid85</span>
+      <span class="mob-label">💬 WeChat</span>
     </button>
-    <a href="https://wa.me/821027549616?text=Hello%20DUCKCHEON%20KOREA%2C%20I%20read%20your%20K-Beauty%20Blog%20and%20would%20like%20to%20inquire%20about%20Korean%20cosmetics." target="_blank" rel="noopener noreferrer" class="float-btn" style="background:var(--wa);">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.031 2c-5.516 0-9.999 4.486-9.999 10.002 0 1.766.461 3.489 1.337 5.01L2 22l5.122-1.342a9.958 9.958 0 0 0 4.907 1.298h.004c5.515 0 9.998-4.486 9.998-10.002 0-2.672-1.04-5.185-2.928-7.074C17.215 3.04 14.703 2 12.031 2zm5.847 14.294c-.246.693-1.434 1.326-1.995 1.409-.513.077-1.163.109-1.878-.118-.434-.138-.99-.322-1.703-.63-2.997-1.293-4.954-4.31-5.104-4.509-.149-.199-1.219-1.622-1.219-3.094 0-1.472.771-2.196 1.045-2.495.274-.299.597-.374.796-.374.199 0 .398.002.572.01.183.009.429-.07.672.513.249.598.846 2.067.921 2.217.075.149.124.324.025.523-.099.199-.149.324-.299.498-.149.174-.314.389-.448.523-.149.149-.304.312-.131.611.174.299.773 1.275 1.66 2.066 1.141 1.017 2.103 1.332 2.402 1.481.299.149.473.125.647-.075.174-.199.746-.872.945-1.171.199-.299.398-.249.672-.149.274.099 1.742.822 2.041.971.299.149.498.224.572.349.075.125.075.722-.171 1.415z"/></svg> <span>WhatsApp Inquiry</span>
+    <a href="https://wa.me/821027549616?text=Hello%20DUCKCHEON%20KOREA%2C%20I%20read%20your%20K-Beauty%20Blog%20and%20would%20like%20to%20inquire%20about%20Korean%20cosmetics." target="_blank" rel="noopener noreferrer" class="float-btn float-wa" style="background:var(--wa);">
+      <span class="desk-label">📱 WhatsApp Inquiry</span>
+      <span class="mob-label">📱 WhatsApp</span>
     </a>
   </div>
 
