@@ -34,30 +34,32 @@ const DEFAULT_NICHES = {
   },
   kbeauty: {
     id: 'kbeauty',
-    name: 'K-뷰티 영문 (dctrade.co.kr)',
+    name: 'K-뷰티 영문 · 유망 중소 발굴 (dctrade.co.kr)',
     icon: '💄',
-    title: 'K-Beauty Global Magazine (순수 한국 화장품 성분·제형·루틴 영문 블로그)',
-    desc: '수출·물류(MOQ/HS코드) 언급 없이 순수 한국 화장품 성분·제형·스킨케어 루틴을 글로벌 소비자와 바이어가 읽기 좋게 다룹니다.',
-    constraint: '✅ 고정 규칙: 수출/무역 용어 배제 · 로고 없는 무지(Unbranded) 제형 사진 · 하단 DUCKCHEON KOREA 공식 카드',
+    title: 'K-Beauty Global Magazine & Korean Indie/SME Hidden Gems (dctrade.co.kr)',
+    desc: '화해(Hwahae)·올리브영에서 검증된 한국 강소·인디 K-뷰티 아이템의 혁신 성분과 제형을 글로벌 바이어·소비자에게 영문으로 소개하고 DUCKCHEON KOREA 소싱 문의로 연결합니다.',
+    constraint: '✅ 한국 강소·인디 K-뷰티 발굴 프리셋 탑재 · 모자이크 없는 선명한 무지(Unbranded) 제형 사진 · 하단 DUCKCHEON KOREA 공식 소싱 카드',
     lang: 'en',
     tones: [
-      { value: 'editorial', label: 'Global K-Beauty Editorial (Allure / Vogue Style English)' },
-      { value: 'derma', label: 'Skin Science & Ingredient Breakdown (Clinical & Clear English)' },
+      { value: 'editorial', label: 'Global K-Beauty & Indie Discovery Editorial (Allure / Vogue Style English)' },
+      { value: 'derma', label: 'Korean SME Lab & Ingredient Breakdown (Clinical & Clear English)' },
       { value: 'routine', label: 'Friendly K-Skincare Routine Guide (Warm Step-by-Step English)' }
     ],
     presets: [
-      { label: '🧬 PDRN & Cica Exosome Barrier Routine', topic: 'Why Korean PDRN and Centella Exosome Ampoules Are Redefining Skin Barrier Repair in 2026', memo: 'Focus on lightweight hydrogel texture, soothing redness, layering with ceramide cream, glass-skin finish' },
-      { label: '💧 Low-Molecular Hyaluronic & Panthenol', topic: 'Multi-Depth Hydration: How Korean 10-Layer Hyaluronic Acid and B5 Lock in Moisture', memo: 'Compare watery toner vs bounce-back serum, non-sticky summer-to-winter layering' },
-      { label: '🌿 Mugwort & Heartleaf Calming Care', topic: 'Korean Mugwort vs. Heartleaf (Houttuynia Cordata): Choosing the Right Calming Toner Pad', memo: 'Pore cooling, sensitive skin pH balance, 5-minute quick toner pack technique' }
+      { label: '🇰🇷 한국 강소·인디 K-뷰티 숨은 명품 5선 (Hwahae & Olive Young Indie Picks)', topic: 'Korea’s Rising Indie & SME K-Beauty Hidden Gems: 2026 Hwahae & Olive Young Trending Formulations', memo: 'Spotlight Heartleaf calming toner pads, fermented rice brightening serum, weightless vegan sun serum, and peel-off bio-collagen wrapping mask from agile Korean SME labs' },
+      { label: '🌿 어성초·시카 진정 토너패드 & 국내 중소 더마 코스메틱 제형 집중 분석', topic: 'Heartleaf (Houttuynia Cordata) & Cica Calming Toner Pads: Why Korean Indie Derma Labs Lead Sensitive Skin Care', memo: 'Dual-textured embossed organic cotton pads, sub-acidic pH 5.5 calming essence, 3-minute quick cooling toner pack routine' },
+      { label: '✨ 쌀 발효(Rice Ferment) & 비건 선세럼: 해외에서 뜨는 한국 인디 스킨케어', topic: 'Fermented Rice Bran & Weightless Vegan Sun Serums: The Next Wave of Korean Indie Glass-Skin Essentials', memo: 'Modern Hanbang fermentation with niacinamide + zero white-cast SPF50+ PA++++ probiotic sun essence texture' },
+      { label: '💧 콜라겐 랩핑 마스크 & 하이드로겔 팩: 한국 강소 제조사 신제형 트렌드', topic: 'Peel-Off Bio-Collagen Wrapping Masks & Melting Hydrogel Sheets: Texture Innovation from Korean Cosmetics Labs', memo: 'Overnight elasticity film formation, 300-Dalton low-molecular collagen absorption, instant glass-skin luminosity' },
+      { label: '🧬 PDRN·엑소좀·스피큘 홈케어 앰플: 한국 클리닉 더마 라인업 소개', topic: 'Why Korean PDRN, Cica Exosome & Micro-Spicule Booster Ampoules Are Redefining Home-Clinic Skincare in 2026', memo: 'Focus on lightweight hydrogel texture, soothing redness, layering with ceramide barrier cream, clinical active delivery' }
     ],
     photos: [
+      'https://dctrade.co.kr/assets/indie-toner-pads.jpg?v=2',
+      'https://dctrade.co.kr/assets/indie-rice-serum.jpg?v=2',
+      'https://dctrade.co.kr/assets/indie-sun-serum.jpg?v=2',
+      'https://dctrade.co.kr/assets/indie-collagen-mask.jpg?v=2',
       'https://dctrade.co.kr/assets/ampoule-cica.jpg?v=2',
       'https://dctrade.co.kr/assets/hydrogel-cream.jpg?v=2',
-      'https://dctrade.co.kr/assets/skincare.jpg?v=2',
-      'https://dctrade.co.kr/assets/masks.jpg?v=2',
-      'https://dctrade.co.kr/assets/hero.jpg?v=2',
-      'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1200&q=80'
+      'https://dctrade.co.kr/assets/skincare.jpg?v=2'
     ]
   },
   shopping: {
@@ -269,35 +271,36 @@ function generateInstantPost(topic, memo, photoCount = 5) {
   if (isEn) {
     sections = [
       {
-        heading: `1. Why This Korean Skincare Approach Matters in 2026`,
-        html: `<p>Modern K-Beauty formulations focus on <strong>skin barrier resilience, lightweight hydration, and biocompatible active delivery</strong>. When exploring <em>${topic}</em>, the secret lies not in heavy occlusion, but in layering fast-absorbing textures that calm sensitivity while restoring a healthy glow.</p>
-               <blockquote>"The hallmark of next-generation Korean skincare is gentle daily efficacy—delivering visible plumpness and soothing relief without overwhelming reactive skin."</blockquote>`
+        heading: `1. Why Korea’s Agile Indie & SME Skincare Labs Lead Global Innovation in 2026`,
+        html: `<p>Today’s biggest K-Beauty breakthroughs are born in <strong>South Korea’s agile SME and indie cosmetic laboratories</strong>—brands that top local consumer rankings on Hwahae and Olive Young before going viral worldwide. Focusing on <em>${topic}</em>, Korean indie formulators combine high-purity clinical actives, clean vegan botanical extracts, and sensorial textures that absorb weightlessly into the skin.</p>
+               <blockquote>"What sets Korean indie and SME skincare apart is speed-to-innovation and clinical transparency—pairing traditional Korean botanicals like Heartleaf and Fermented Rice with next-generation bio-actives."</blockquote>`
       },
       {
-        heading: `2. Key Ingredients, Texture & Synergy Breakdown`,
-        html: `<p>Key formulation highlights to look for include:</p>
+        heading: `2. Trending Korean Indie Categories, Key Actives & Texture Comparison`,
+        html: `<p>Here is how Korea’s top-rated indie formulations compare across active ingredients, texture, and daily skin benefits:</p>
                <table>
-                 <thead><tr><th>Active Component</th><th>Primary Skin Benefit</th><th>Texture & Layering Tip</th></tr></thead>
+                 <thead><tr><th>K-Beauty Indie Category</th><th>Key Korean Active Ingredients</th><th>Texture & Skin Feel</th><th>Why Korean Consumers Love It</th></tr></thead>
                  <tbody>
-                   <tr><td><strong>PDRN & Peptides</strong></td><td>Supports skin elasticity & surface renewal</td><td>Apply right after toner on slightly damp skin</td></tr>
-                   <tr><td><strong>Centella Asiatica (Cica)</strong></td><td>Calms visible redness & heat sensitivity</td><td>Pair with hydrogel or watery ampoule textures</td></tr>
-                   <tr><td><strong>Multi-Weight Hyaluronic Acid</strong></td><td>Deep-to-surface moisture retention</td><td>Seal with a breathable ceramide barrier cream</td></tr>
+                   <tr><td><strong>Heartleaf & Cica Toner Pads</strong></td><td>Houttuynia Cordata, Madecassoside, Panthenol</td><td>Dual-sided embossed cotton soaked in watery essence</td><td>Doubles as a gentle daily wipe and a 3-minute cooling sheet mask</td></tr>
+                   <tr><td><strong>Fermented Rice Glow Serum</strong></td><td> Yeoju/Icheon Rice Bran Ferment, Niacinamide, Probiotics</td><td>Milky, non-sticky essence drop</td><td>Brightens dull tone and creates dewy glass-skin luminosity</td></tr>
+                   <tr><td><strong>Vegan Probiotic Sun Serum</strong></td><td>Rice Extract, Bio-Ferments, Broad-Spectrum UV Filters</td><td>Weightless hydrating lotion-serum</td><td>Zero white cast, zero eye-sting, layers smoothly under makeup</td></tr>
+                   <tr><td><strong>Bio-Collagen Wrapping Mask</strong></td><td>300-Dalton Low-Molecular Collagen, Peptides, PDRN</td><td>Glossy peel-off hydrogel film</td><td>Locks in overnight moisture and visibly plumps fine lines by morning</td></tr>
                  </tbody>
                </table>
-               <p>${memo ? `<strong>Editor's Note:</strong> ${memo}` : ''}</p>`
+               <p>${memo ? `<strong>Formulation & Curation Note:</strong> ${memo}` : ''}</p>`
       },
       {
-        heading: `3. Step-by-Step AM & PM Layering Routine`,
-        html: `<p>For optimal absorption without pilling, apply 2–3 drops of the essence or ampoule onto cleansed, toned skin and gently press with warm palms. Follow with a barrier-lock moisturizer in the evening or a broad-spectrum UV fluid in the morning.</p>`
+        heading: `3. Step-by-Step Daily Glass-Skin Layering Routine`,
+        html: `<p>Start by placing two chilled Heartleaf calming toner pads onto the cheeks for 3 minutes to lower skin temperature. Follow with 2–3 drops of fermented rice or PDRN ampoule pressed gently into damp skin. In the morning, finish with two finger-lengths of weightless vegan sun serum; at night, seal in your actives with a ceramide barrier cream or an overnight bio-collagen wrapping mask.</p>`
       }
     ];
     if (document.getElementById('optKbeautyCtaCard')?.checked !== false) {
       sections.push({
-        heading: `4. Connect with DUCKCHEON KOREA (Official K-Beauty Partner)`,
-        html: `<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:14px 16px;">
-                 <p style="margin-bottom:6px;"><strong>🏢 DUCKCHEON KOREA | Official K-Beauty Curation & Global Inquiries</strong></p>
-                 <p style="margin-bottom:4px;">Explore authentic Korean skincare lines and product inquiries via our official website:</p>
-                 <p style="margin:0;">🌐 Website: <a href="https://dctrade.co.kr" target="_blank" rel="noopener">https://dctrade.co.kr</a> &nbsp;|&nbsp; 💬 WeChat: <strong>intid85</strong> &nbsp;|&nbsp; 📱 WhatsApp: <a href="https://wa.me/821027549616" target="_blank" rel="noopener">+82 10-2754-9616</a></p>
+        heading: `4. Source Authentic Korean SME & Indie K-Beauty with DUCKCHEON KOREA`,
+        html: `<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:16px 18px;">
+                 <p style="margin-bottom:6px;"><strong>🏢 DUCKCHEON KOREA | Official Korean SME & Indie K-Beauty Sourcing Partner</strong></p>
+                 <p style="margin-bottom:8px;">Looking to discover and source authentic, high-performing Korean SME and Indie skincare brands directly from South Korea? DUCKCHEON KOREA curates verified trending K-Beauty lines for global retailers, distributors, and partners.</p>
+                 <p style="margin:0;">🌐 Official Website: <a href="https://dctrade.co.kr" target="_blank" rel="noopener"><strong>https://dctrade.co.kr</strong></a> &nbsp;|&nbsp; 💬 WeChat ID: <strong>intid85</strong> &nbsp;|&nbsp; 📱 WhatsApp: <a href="https://wa.me/821027549616" target="_blank" rel="noopener"><strong>+82 10-2754-9616</strong></a></p>
                </div>`
       });
     }
