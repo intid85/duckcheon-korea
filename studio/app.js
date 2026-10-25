@@ -46,6 +46,7 @@ const DEFAULT_NICHES = {
       { value: 'routine', label: 'Friendly K-Skincare Routine Guide (Warm Step-by-Step English)' }
     ],
     presets: [
+      { label: '🟣 [실물 제품 샘플] 아로셀 슈퍼콜라겐 마스크 2.0 (Arocell 43g Hydrogel Mask 영문 쇼케이스)', topic: 'Arocell Super Collagen Mask 2.0 (ECM Active): Why This 43g Overnight Bio-Collagen Hydrogel Pack Is Going Viral in Korea', memo: 'Brand: Arocell | Product: Super Collagen Mask 2.0 (ECM Active) | Net Wt: 43g (1.51 oz) x 12EA | Key Actives: 173Da Hydrolyzed Collagen, ECM Complex (Collagen, Hyaluronic Acid, Elastin), Niacinamide, Adenosine | Turns transparent over 2-3 hours or overnight' },
       { label: '🇰🇷 한국 강소·인디 K-뷰티 숨은 명품 5선 (Hwahae & Olive Young Indie Picks)', topic: 'Korea’s Rising Indie & SME K-Beauty Hidden Gems: 2026 Hwahae & Olive Young Trending Formulations', memo: 'Spotlight Heartleaf calming toner pads, fermented rice brightening serum, weightless vegan sun serum, and peel-off bio-collagen wrapping mask from agile Korean SME labs' },
       { label: '🌿 어성초·시카 진정 토너패드 & 국내 중소 더마 코스메틱 제형 집중 분석', topic: 'Heartleaf (Houttuynia Cordata) & Cica Calming Toner Pads: Why Korean Indie Derma Labs Lead Sensitive Skin Care', memo: 'Dual-textured embossed organic cotton pads, sub-acidic pH 5.5 calming essence, 3-minute quick cooling toner pack routine' },
       { label: '✨ 쌀 발효(Rice Ferment) & 비건 선세럼: 해외에서 뜨는 한국 인디 스킨케어', topic: 'Fermented Rice Bran & Weightless Vegan Sun Serums: The Next Wave of Korean Indie Glass-Skin Essentials', memo: 'Modern Hanbang fermentation with niacinamide + zero white-cast SPF50+ PA++++ probiotic sun essence texture' },
@@ -53,6 +54,11 @@ const DEFAULT_NICHES = {
       { label: '🧬 PDRN·엑소좀·스피큘 홈케어 앰플: 한국 클리닉 더마 라인업 소개', topic: 'Why Korean PDRN, Cica Exosome & Micro-Spicule Booster Ampoules Are Redefining Home-Clinic Skincare in 2026', memo: 'Focus on lightweight hydrogel texture, soothing redness, layering with ceramide barrier cream, clinical active delivery' }
     ],
     photos: [
+      'https://dctrade.co.kr/assets/arocell-01.jpg',
+      'https://dctrade.co.kr/assets/arocell-02.jpg',
+      'https://dctrade.co.kr/assets/arocell-03.jpg',
+      'https://dctrade.co.kr/assets/arocell-04.jpg',
+      'https://dctrade.co.kr/assets/arocell-05.jpg',
       'https://dctrade.co.kr/assets/indie-toner-pads.jpg?v=2',
       'https://dctrade.co.kr/assets/indie-rice-serum.jpg?v=2',
       'https://dctrade.co.kr/assets/indie-sun-serum.jpg?v=2',
