@@ -51,11 +51,11 @@ const DEFAULT_NICHES = {
       { label: '🌿 Mugwort & Heartleaf Calming Care', topic: 'Korean Mugwort vs. Heartleaf (Houttuynia Cordata): Choosing the Right Calming Toner Pad', memo: 'Pore cooling, sensitive skin pH balance, 5-minute quick toner pack technique' }
     ],
     photos: [
-      'https://dctrade.co.kr/assets/ampoule-cica.jpg',
-      'https://dctrade.co.kr/assets/hydrogel-cream.jpg',
-      'https://dctrade.co.kr/assets/skincare.jpg',
-      'https://dctrade.co.kr/assets/masks.jpg',
-      'https://dctrade.co.kr/assets/hero.jpg',
+      'https://dctrade.co.kr/assets/ampoule-cica.jpg?v=2',
+      'https://dctrade.co.kr/assets/hydrogel-cream.jpg?v=2',
+      'https://dctrade.co.kr/assets/skincare.jpg?v=2',
+      'https://dctrade.co.kr/assets/masks.jpg?v=2',
+      'https://dctrade.co.kr/assets/hero.jpg?v=2',
       'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1200&q=80'
     ]
@@ -260,8 +260,8 @@ function generateInstantPost(topic, memo, photoCount = 5) {
         ? `Figure ${i + 1}. Clean unbranded K-Beauty texture & skincare application visual (${topic.slice(0, 36)})`
         : `사진 ${i + 1}. ${topic.slice(0, 28)} 현장 분위기 및 핵심 체크 포인트`,
       prompt: isEn
-        ? `Editorial macro skincare photography, unbranded glass dropper and hydrogel cream texture on clean stone surface, natural morning sunlight, no text, no logo, 8k`
-        : `Realistic Korean travel & lifestyle photography of ${topic}, bright natural daylight, candid angle, clean composition, no text overlay, high detail`
+        ? `Editorial macro skincare photography, unbranded glass dropper and hydrogel cream texture on clean stone surface, natural morning sunlight, crystal clear sharp focus, no mosaic, no blur, no text, no logo, 8k`
+        : `Realistic Korean travel & lifestyle photography of ${topic}, bright natural daylight, candid angle, clean composition, crystal clear sharp focus, no mosaic, no blur, no text overlay, high detail`
     });
   }
 
@@ -712,7 +712,7 @@ function buildCleanExportHtml(fullPage = false) {
     const fig = document.createElement('figure');
     fig.style.cssText = 'margin:22px 0;text-align:center;';
     fig.innerHTML = `
-      <img src="${p.url || ''}" alt="${(p.caption || title).replace(/"/g, '&quot;')}" style="max-width:100%;height:auto;border-radius:10px;" />
+      <img src="${p.url || ''}" alt="${(p.caption || title).replace(/"/g, '&quot;')}" style="max-width:100%;height:auto;border-radius:10px;filter:none !important;backdrop-filter:none !important;" />
       <figcaption style="font-size:13px;color:#64748b;margin-top:6px;">${p.caption || ''}</figcaption>
     `;
     card.replaceWith(fig);

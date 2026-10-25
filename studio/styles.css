@@ -687,3 +687,10 @@ body[data-theme="dark"] .wp-editor-toolbar {
   font-weight: 600;
   box-shadow: var(--shadow-md);
 }
+
+/* Guarantee crisp, unmosaicked image rendering */
+.photo-preview-wrap img, .blog-editor-canvas img {
+  filter: none !important;
+  backdrop-filter: none !important;
+  image-rendering: -webkit-optimize-contrast;
+}
