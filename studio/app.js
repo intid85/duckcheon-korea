@@ -303,10 +303,15 @@ function generateInstantPost(topic, memo, photoCount = 5) {
     if (document.getElementById('optKbeautyCtaCard')?.checked !== false) {
       sections.push({
         heading: `4. Source Authentic Korean SME & Indie K-Beauty with DUCKCHEON KOREA`,
-        html: `<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:16px 18px;">
-                 <p style="margin-bottom:6px;"><strong>🏢 DUCKCHEON KOREA | Official Korean SME & Indie K-Beauty Sourcing Partner</strong></p>
-                 <p style="margin-bottom:8px;">Looking to discover and source authentic, high-performing Korean SME and Indie skincare brands directly from South Korea? DUCKCHEON KOREA curates verified trending K-Beauty lines for global retailers, distributors, and partners.</p>
-                 <p style="margin:0;">🌐 Official Website: <a href="https://dctrade.co.kr" target="_blank" rel="noopener"><strong>https://dctrade.co.kr</strong></a> &nbsp;|&nbsp; 💬 WeChat ID: <strong>intid85</strong> &nbsp;|&nbsp; 📱 WhatsApp: <a href="https://wa.me/821027549616" target="_blank" rel="noopener"><strong>+82 10-2754-9616</strong></a></p>
+        html: `<div style="background:#0B1D3A;color:#ffffff;border-radius:12px;padding:22px 24px;">
+                 <p style="margin-bottom:8px;font-size:17px;"><strong>🏢 Interested in Sourcing Authentic Korean Cosmetics Directly from Korea?</strong></p>
+                 <p style="margin-bottom:14px;color:rgba(255,255,255,0.88);"><strong>DUCKCHEON KOREA (https://dctrade.co.kr/)</strong> supplies verified, 100% genuine Korean cosmetics directly from South Korea to global buyers and partners. Contact our export and curation desk anytime via <strong>WeChat (intid85)</strong>, <strong>WhatsApp (+82 10-2754-9616)</strong>, or <strong>Email (<a href="mailto:duckcheonkorea@gmail.com" style="color:#fff;text-decoration:underline;">duckcheonkorea@gmail.com</a>)</strong> for wholesale quotes and product inquiries!</p>
+                 <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;">
+                   <a href="https://dctrade.co.kr/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:8px;background:#ffffff;color:#0B1D3A;font-weight:700;font-size:13px;text-decoration:none;">🌐 Official Website: dctrade.co.kr →</a>
+                   <a href="https://wa.me/821027549616" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:8px;background:#25D366;color:#ffffff;font-weight:700;font-size:13px;text-decoration:none;">📱 WhatsApp: +82 10-2754-9616</a>
+                   <a href="https://dctrade.co.kr/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:8px;background:#07C160;color:#ffffff;font-weight:700;font-size:13px;text-decoration:none;">💬 WeChat ID: intid85</a>
+                   <a href="mailto:duckcheonkorea@gmail.com?subject=Wholesale%20%26%20K-Beauty%20Sourcing%20Inquiry%20-%20DUCKCHEON%20KOREA" style="display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:8px;background:#B68D40;color:#ffffff;font-weight:700;font-size:13px;text-decoration:none;">✉️ Email: duckcheonkorea@gmail.com</a>
+                 </div>
                </div>`
       });
     }
