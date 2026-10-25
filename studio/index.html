@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>통합 AI 블로그 스튜디오 | Multi-Niche Blog Writing Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body data-theme="light">
+  <!-- Top Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="logo-badge">AI STUDIO</div>
+      <div>
+        <h1 class="app-title">통합 AI 블로그 스튜디오 <span class="version-pill">v2.6 Multi-Niche</span></h1>
+        <p class="app-subtitle">여행 · K-뷰티 영문(dctrade.co.kr) · 쇼핑커넥트 · 커스텀 분야 원클릭 원고 &amp; 고화질 사진 자동 생성</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="status-indicators">
+        <span id="deepseekStatusBadge" class="api-badge" onclick="openModal('settingsModal')" title="클릭하여 API 설정 열기">
+          <span class="dot"></span> DeepSeek: <strong id="deepseekStatusText">즉시 초안 모드 (무료)</strong>
+        </span>
+        <span id="falStatusBadge" class="api-badge" onclick="openModal('settingsModal')" title="클릭하여 fal AI 설정 열기">
+          <span class="dot"></span> fal AI 사진: <strong id="falStatusText">무료 스톡 + 프롬프트</strong>
+        </span>
+      </div>
+      <button class="hdr-btn" onclick="openModal('draftsModal')">
+        🗂️ 내 글 보관함 <span id="draftCountBadge" class="count-pill">0</span>
+      </button>
+      <button class="hdr-btn" onclick="openModal('settingsModal')">
+        ⚙️ API &amp; GitHub 설정
+      </button>
+      <button class="hdr-btn icon-only" id="themeToggleBtn" onclick="toggleTheme()" title="다크/라이트 모드 전환">
+        🌙
+      </button>
+    </div>
+  </header>
+
+  <!-- Category Navigation Bar -->
+  <section class="niche-nav-bar">
+    <div class="niche-tabs-wrap" id="nicheTabsContainer">
+      <!-- Dynamically populated tabs + Custom button -->
+    </div>
+  </section>
+
+  <!-- Main Workspace -->
+  <main class="studio-workspace">
+    <!-- Left Column: Generator Controls & Niche Config -->
+    <aside class="control-panel">
+      <!-- Active Niche Banner -->
+      <div class="panel-card niche-info-card" id="nicheInfoBanner">
+        <div class="niche-info-top">
+          <span class="niche-icon" id="activeNicheIcon">✈️</span>
+          <div>
+            <h2 id="activeNicheTitle">여행 블로그 (국내·해외 여행 / 코스·맛집·명소)</h2>
+            <p id="activeNicheDesc">생생한 현장감과 동선·비용·꿀팁 표가 포함된 고품질 여행 포스팅을 자동 구성합니다.</p>
+          </div>
+        </div>
+        <div id="nicheConstraintBadge" class="constraint-alert" style="display:none;"></div>
+      </div>
+
+      <!-- Preset Quick-Fill Chips -->
+      <div class="panel-card">
+        <div class="card-label-row">
+          <label class="section-label">⚡ 추천 주제 원클릭 자동 입력 (프리셋 칩)</label>
+          <span class="hint-text">클릭하면 아래 입력창에 바로 채워집니다</span>
+        </div>
+        <div class="preset-chips" id="presetChipsContainer"></div>
+      </div>
+
+      <!-- Topic & Keyword Input -->
+      <div class="panel-card">
+        <label class="section-label" for="topicInput">1️⃣ 주제 / 키워드 입력 <span class="req">*</span></label>
+        <input type="text" id="topicInput" class="text-input" placeholder="한글로 편하게 적어주세요 (예: 제주 성산일출봉 근처 가볼만한곳이랑 준비물)" />
+
+        <label class="section-label mt-14" for="memoInput">2️⃣ 핵심 포인트 / 메모 (선택)</label>
+        <textarea id="memoInput" class="textarea-input" rows="3" placeholder="강조하고 싶은 내용, 다녀온 코스, 추천 아이템, 가격대나 특징을 자유롭게 메모하세요 (비워두어도 자동 구성됩니다)"></textarea>
+
+        <div class="row-2col mt-14">
+          <div>
+            <label class="section-label" for="photoCountSelect">3️⃣ 사진 개수 선택</label>
+            <select id="photoCountSelect" class="select-input">
+              <option value="3">3장 (핵심 요약형)</option>
+              <option value="5" selected>5장 (네이버·구글 표준 추천)</option>
+              <option value="7">7장 (풍성한 비주얼 가이드)</option>
+            </select>
+          </div>
+          <div>
+            <label class="section-label" for="genModeSelect">4️⃣ 생성 엔진 모드</label>
+            <select id="genModeSelect" class="select-input" onchange="updateCostEstimate()">
+              <option value="auto">스마트 자동 (API 키 있으면 DeepSeek / 없으면 즉시 초안)</option>
+              <option value="instant">⚡ 즉시 초안 생성 (API 키 없이 0.5초 완성)</option>
+              <option value="deepseek">🧠 DeepSeek API 실시간 생성 (deepseek-chat)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="cost-estimator-bar" id="costEstimatorBar">
+          <span>💡 예상 생성 비용: <strong id="estimatedCostText">₩0 (즉시 초안 엔진 · 무료)</strong></span>
+          <span class="token-est" id="estimatedTokenText">약 2,400 토큰 분량 (DeepSeek API 사용 시 약 ₩3.2 / 편)</span>
+        </div>
+      </div>
+
+      <!-- Niche-Specific Options -->
+      <div class="panel-card" id="nicheOptionsCard">
+        <label class="section-label">🎛️ 분야별 맞춤 옵션 &amp; 말투 설정</label>
+
+        <!-- Tone Selector -->
+        <div class="form-group mt-10">
+          <label class="sub-label" for="toneSelect">글 말투 / 언어 스타일</label>
+          <select id="toneSelect" class="select-input"></select>
+        </div>
+
+        <!-- Travel Specific Toggles -->
+        <div id="travelOptionsGroup" class="niche-opt-group">
+          <label class="toggle-row">
+            <input type="checkbox" id="optTravelShoppingConnect" checked />
+            <span class="toggle-text">🎒 <strong>여행 준비물 · 쇼핑커넥트 자연스러운 연결 문단</strong> 포함</span>
+          </label>
+          <label class="toggle-row">
+            <input type="checkbox" id="optTravelPhotoLicense" checked />
+            <span class="toggle-text">📸 <strong>공공누리 · 무료 상업용 사진 출처 표기 블록</strong> 하단 자동 삽입</span>
+          </label>
+        </div>
+
+        <!-- K-Beauty Specific Toggles -->
+        <div id="kbeautyOptionsGroup" class="niche-opt-group" style="display:none;">
+          <div class="rule-pill-box">
+            ✅ <strong>고정 규칙 적용됨:</strong> 수출·도매·물류(MOQ/HS코드/컨테이너) 내용 100% 배제 · 순수 한국 화장품 성분·제형·루틴 영문 매거진 톤 · 무지(Unbranded) 제형 사진 자동 배치
+          </div>
+          <label class="toggle-row mt-8">
+            <input type="checkbox" id="optKbeautyCtaCard" checked />
+            <span class="toggle-text">🏢 하단 <strong>DUCKCHEON KOREA 공식 링크(dctrade.co.kr) &amp; WeChat(intid85) / WhatsApp(+82 10-2754-9616)</strong> 파트너 카드 자동 삽입</span>
+          </label>
+          <label class="toggle-row">
+            <input type="checkbox" id="optKbeautyLocalAssets" checked />
+            <span class="toggle-text">🧴 <strong>로고 없는 무지 화장품/제형 고화질 사진</strong> 우선 배치 (`/assets/` + 클린 스킨케어)</span>
+          </label>
+        </div>
+
+        <!-- Shopping Review Specific Toggles -->
+        <div id="shoppingOptionsGroup" class="niche-opt-group" style="display:none;">
+          <div class="rule-pill-box">
+            🛡️ <strong>클린 리뷰 필터 적용됨:</strong> '최저가', '무조건', '네이버 최고 혜택' 등 과장/금칙어 자동 배제 · 실사용 비교표 및 장단점 박스 자동 포함
+          </div>
+          <div class="form-group mt-8">
+            <label class="sub-label" for="shoppingLinkInput">쇼핑커넥트 / 쿠팡 파트너스 링크 (선택)</label>
+            <input type="url" id="shoppingLinkInput" class="text-input" placeholder="https://naver.me/... 또는 상품 링크 입력 시 하단 안내 박스에 연결됩니다" />
+          </div>
+          <label class="toggle-row mt-8">
+            <input type="checkbox" id="optShoppingDisclosure" checked />
+            <span class="toggle-text">📌 공정위 <strong>수수료 지급 안내 문구 (파트너스/쇼핑커넥트 표준)</strong> 하단 포함</span>
+          </label>
+        </div>
+
+        <!-- Custom Niche Specific Options -->
+        <div id="customOptionsGroup" class="niche-opt-group" style="display:none;">
+          <div class="form-group">
+            <label class="sub-label" for="customLangSelect">작성 언어 (Target Language)</label>
+            <select id="customLangSelect" class="select-input">
+              <option value="ko">한국어 (Korean)</option>
+              <option value="en">English (영문 블로그)</option>
+              <option value="ja">日本語 (일본어 블로그)</option>
+              <option value="zh">中文 (중국어 블로그)</option>
+            </select>
+          </div>
+          <div class="form-group mt-8">
+            <label class="sub-label" for="customFooterInput">하단 고정 서명 / 안내 문구 (Footer Template)</label>
+            <textarea id="customFooterInput" class="textarea-input" rows="2" placeholder="글 하단에 항상 들어갈 안내 문구나 링크를 입력하세요"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Generate Action CTA -->
+      <button id="generatePostBtn" class="generate-cta-btn" onclick="handleGeneratePost()">
+        ✨ 블로그 글 + 사진 자동 생성
+      </button>
+    </aside>
+
+    <!-- Right Column: Live Editor, 5 Titles, Image Manager & One-Click Export -->
+    <section class="editor-panel">
+      <!-- Top Action Toolbar -->
+      <div class="action-toolbar">
+        <div class="toolbar-left">
+          <span class="live-status-dot"></span>
+          <strong id="editorStatusTitle">실시간 원고 에디터 &amp; 프리뷰</strong>
+          <span class="char-counter" id="charCounterBadge">공백 제외 0자 · 사진 0장</span>
+        </div>
+        <div class="toolbar-actions">
+          <button class="act-btn primary-copy" onclick="copyForNaverTistory()">
+            📋 네이버 블로그·티스토리 복붙용 복사 (사진+서식 포함)
+          </button>
+          <button class="act-btn github-pub" onclick="openPublishModal()">
+            🚀 GitHub 블로그에 바로 발행
+          </button>
+          <div class="dropdown-wrap">
+            <button class="act-btn secondary" onclick="toggleDownloadMenu()">
+              💾 파일 다운로드 ▾
+            </button>
+            <div id="downloadMenu" class="dropdown-menu" style="display:none;">
+              <button onclick="downloadPostFile('html')">🌐 독립 실행형 HTML 다운로드 (.html)</button>
+              <button onclick="downloadPostFile('md')">📝 마크다운 다운로드 (.md)</button>
+              <button onclick="downloadPostFile('txt')">📄 순수 텍스트 + 프롬프트 (.txt)</button>
+            </div>
+          </div>
+          <button class="act-btn secondary" onclick="saveCurrentDraftManual()">
+            🗂️ 보관함 저장
+          </button>
+        </div>
+      </div>
+
+      <!-- 5 Recommended Titles Box -->
+      <div class="titles-recommendation-card" id="titlesCard">
+        <div class="titles-header">
+          <div>
+            <span class="badge-tag">SEO &amp; AI 인용 최적화</span>
+            <h3>🎯 추천 제목 5선 <span class="sub-hint">(마음에 드는 제목을 클릭하면 본문 대표 제목으로 즉시 반영됩니다)</span></h3>
+          </div>
+          <button class="mini-btn" onclick="regenerateTitlesOnly()">🔄 제목 5개 다시 뽑기</button>
+        </div>
+        <div class="titles-list" id="recommendedTitlesList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Photo Manager Strip (Collapsible or Quick Overview) -->
+      <div class="photo-manager-bar" id="photoManagerBar">
+        <div class="pm-header">
+          <div>
+            <strong>🖼️ 본문 배치 사진 &amp; AI 이미지 프롬프트 관리 (<span id="pmCountText">5</span>장)</strong>
+            <span class="sub-hint">각 사진 블록에서 무료 스톡 교체, 내 사진 업로드, 또는 fal AI(약 21원/장) 즉시 생성이 가능합니다.</span>
+          </div>
+          <div class="pm-actions">
+            <button class="mini-btn" onclick="shuffleAllStockPhotos()">🔄 전체 무료 사진 새 조합</button>
+            <button class="mini-btn accent" onclick="generateAllFalImages()">🎨 전체 사진 fal AI 일괄 생성</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editable Rich Blog Preview Container -->
+      <div class="blog-canvas-wrapper">
+        <div class="blog-article-header-edit">
+          <label class="tiny-label">현재 선택된 대표 제목 (직접 수정 가능)</label>
+          <input type="text" id="activePostTitleInput" class="post-title-live-input" oninput="syncTitleFromInput(this.value)" placeholder="제목이 여기에 표시됩니다" />
+          <div class="slug-row">
+            <span class="slug-label">🔗 영문 슬러그 (GitHub 발행 파일명):</span>
+            <input type="text" id="activePostSlugInput" class="slug-input" placeholder="travel-ulsan-junggu-walk-course" />
+            <span class="tag-list-preview" id="activeTagsPreview"></span>
+          </div>
+        </div>
+
+                <!-- WordPress-Style Visual Editor Toolbar -->
+        <div class="wp-editor-toolbar" id="wpEditorToolbar">
+          <div class="wp-toolbar-top">
+            <span class="wp-badge">W 워드프레스 비주얼 에디터 모드</span>
+            <span class="wp-hint">일반 워드프레스처럼 바로 타이핑·서식 적용·사진 첨부 후 <strong>GitHub 발행</strong> 또는 <strong>네이버·티스토리 복사</strong>가 가능합니다. (Sveltia/Decap CMS 호환)</span>
+            <button type="button" class="wp-blank-btn" onclick="startBlankWordpressPost()">📝 빈 종이에 직접 글쓰기</button>
+          </div>
+          <div class="wp-toolbar-buttons">
+            <button type="button" class="wp-tool-btn" onclick="wpFormat('h2')" title="대소제목 추가"><strong>H2</strong> 소제목</button>
+            <button type="button" class="wp-tool-btn" onclick="wpFormat('h3')" title="중소제목 추가"><strong>H3</strong> 보조제목</button>
+            <span class="wp-divider"></span>
+            <button type="button" class="wp-tool-btn" onclick="wpFormat('bold')" title="굵게 (Ctrl+B)"><strong>B</strong> 굵게</button>
+            <button type="button" class="wp-tool-btn" onclick="wpFormat('underline')" title="밑줄 (Ctrl+U)"><u>U</u> 밑줄</button>
+            <button type="button" class="wp-tool-btn" onclick="wpFormat('highlight')" title="형광펜 강조"><span class="hl-sample">형광펜</span></button>
+            <span class="wp-divider"></span>
+            <button type="button" class="wp-tool-btn" onclick="wpFormat('quote')" title="인용구 박스 삽입">❝ 인용구</button>
+            <button type="button" class="wp-tool-btn" onclick="wpFormat('hr')" title="구분선 삽입">— 구분선</button>
+            <button type="button" class="wp-tool-btn" onclick="wpFormat('table')" title="요약 표 삽입">📊 표 넣기</button>
+            <span class="wp-divider"></span>
+            <button type="button" class="wp-tool-btn accent" onclick="wpFormat('uploadPhoto')" title="내 컴퓨터 사진 넣기">📷 내 사진 넣기</button>
+            <button type="button" class="wp-tool-btn accent" onclick="wpFormat('aiPhoto')" title="무료 스톡/AI 사진 블록 추가">🎨 사진 블록 추가</button>
+            <button type="button" class="wp-tool-btn" onclick="wpFormat('link')" title="링크 또는 CTA 버튼 넣기">🔗 링크/버튼</button>
+          </div>
+        </div>
+
+        <!-- Rich Content Area (Mixed Editable Sections + Interactive Photo Cards) -->
+        <div id="blogEditorCanvas" class="blog-editor-canvas">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Bottom Action Toolbar -->
+      <div class="action-toolbar bottom-bar">
+        <div class="toolbar-left">
+          <span class="sub-hint">💡 본문 문장이나 표의 글자를 마우스로 클릭하면 화면에서 바로 수정할 수 있습니다.</span>
+        </div>
+        <div class="toolbar-actions">
+          <button class="act-btn primary-copy" onclick="copyForNaverTistory()">
+            📋 네이버 블로그·티스토리 복붙용 복사 (사진+서식 포함)
+          </button>
+          <button class="act-btn github-pub" onclick="openPublishModal()">
+            🚀 GitHub 블로그에 바로 발행
+          </button>
+          <button class="act-btn secondary" onclick="downloadPostFile('html')">
+            💾 HTML 다운로드
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal 1: Settings (DeepSeek API, fal AI Key, GitHub Token) -->
+  <div id="settingsModal" class="modal-backdrop" style="display:none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>⚙️ AI 엔진 &amp; GitHub 발행 설정</h3>
+        <button class="close-btn" onclick="closeModal('settingsModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-note">모든 API 키는 서버로 전송되지 않으며, 현재 브라우저의 <code>localStorage</code>에만 안전하게 보관됩니다. 키가 없어도 <strong>즉시 초안 생성 모드</strong>와 <strong>무료 상업용 사진 추천</strong>은 100% 작동합니다.</p>
+
+        <div class="setting-block">
+          <label class="section-label">🧠 DeepSeek API Key (선택 · 실시간 AI 원고 생성)</label>
+          <input type="password" id="settingDeepseekKey" class="text-input" placeholder="sk-..." />
+          <div class="setting-help">
+            <span>모델: <code>deepseek-chat</code> (`https://api.deepseek.com/chat/completions`) · 글 1편당 약 ₩2~5 수준</span>
+          </div>
+        </div>
+
+        <div class="setting-block">
+          <label class="section-label">🎨 fal.ai API Key (`FAL_KEY` · 선택 · AI 실사 이미지 생성)</label>
+          <input type="password" id="settingFalKey" class="text-input" placeholder="key_id:key_secret" />
+          <div class="row-2col mt-8">
+            <div>
+              <label class="sub-label">선호 fal 모델</label>
+              <select id="settingFalModel" class="select-input">
+                <option value="fal-ai/flux/schnell" selected>fal-ai/flux/schnell (초고속 · 장당 약 ₩21)</option>
+                <option value="fal-ai/flux-2/flash">fal-ai/flux-2/flash (FLUX.2 Flash · 고화질)</option>
+              </select>
+            </div>
+            <div>
+              <label class="sub-label">이미지 비율</label>
+              <select id="settingFalRatio" class="select-input">
+                <option value="landscape_16_9" selected>가로형 16:9 (블로그 대표/본문 표준)</option>
+                <option value="landscape_4_3">가로형 4:3 (네이버 블로그 클래식)</option>
+                <option value="square_hd">정사각형 1:1 (인스타·썸네일 겸용)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="setting-block">
+          <label class="section-label">🚀 GitHub Personal Access Token (블로그 원클릭 자동 발행용)</label>
+          <input type="password" id="settingGithubToken" class="text-input" placeholder="ghp_... 또는 github_pat_..." />
+          <div class="row-2col mt-8">
+            <div>
+              <label class="sub-label">기본 대상 저장소 (Owner/Repo)</label>
+              <input type="text" id="settingGithubRepo" class="text-input" value="intid85/duckcheon-korea" placeholder="intid85/duckcheon-korea" />
+            </div>
+            <div>
+              <label class="sub-label">기본 발행 경로 폴더</label>
+              <input type="text" id="settingGithubFolder" class="text-input" value="blog" placeholder="blog" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="act-btn secondary" onclick="closeModal('settingsModal')">취소</button>
+        <button class="act-btn primary-copy" onclick="saveSettings()">💾 설정 저장하기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Create Custom Niche (`+ 새 분야 추가`) -->
+  <div id="customNicheModal" class="modal-backdrop" style="display:none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>✨ 새 블로그 분야(카테고리) 만들기</h3>
+        <button class="close-btn" onclick="closeModal('customNicheModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-note">자주 쓰는 나만의 블로그 주제(맛집, 캠핑, IT/테크, 육아, 부동산, 일본어/중국어 블로그 등)를 탭으로 추가해 두고 언제든 원클릭으로 글을 생성하세요.</p>
+        <div class="row-2col">
+          <div>
+            <label class="section-label">분야 이름 <span class="req">*</span></label>
+            <input type="text" id="newNicheName" class="text-input" placeholder="예: 전국 노지 캠핑 & 맛집" />
+          </div>
+          <div>
+            <label class="section-label">아이콘 이모지</label>
+            <input type="text" id="newNicheEmoji" class="text-input" value="⛺" placeholder="⛺, 🍜, 💻, 📈 등" />
+          </div>
+        </div>
+        <div class="row-2col mt-12">
+          <div>
+            <label class="section-label">기본 작성 언어</label>
+            <select id="newNicheLang" class="select-input">
+              <option value="ko">한국어 (Korean)</option>
+              <option value="en">English (영문)</option>
+              <option value="ja">日本語 (일본어)</option>
+              <option value="zh">中文 (중국어)</option>
+            </select>
+          </div>
+          <div>
+            <label class="section-label">기본 말투 스타일</label>
+            <select id="newNicheTone" class="select-input">
+              <option value="friendly">친근한 네이버 이웃 사람톤 (~했어요/솔직 후기)</option>
+              <option value="guide">깔끔한 정보성 가이드톤 (~합니다/핵심 정리)</option>
+              <option value="magazine">전문 에디토리얼 매거진 톤</option>
+            </select>
+          </div>
+        </div>
+        <div class="mt-12">
+          <label class="section-label">자주 쓰는 추천 프리셋 주제 (쉼표 `,`로 구분)</label>
+          <input type="text" id="newNichePresets" class="text-input" placeholder="예: 강원도 뷰좋은 오토캠핑장 추천, 동계 캠핑 난방 텐트 세팅법, 캠핑 그리들 요리 베스트 5" />
+        </div>
+        <div class="mt-12">
+          <label class="section-label">하단 고정 문구 / 서명 템플릿 (선택)</label>
+          <textarea id="newNicheFooter" class="textarea-input" rows="2" placeholder="예: 공감과 댓글은 큰 힘이 됩니다! 궁금한 점은 댓글로 남겨주세요."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="act-btn secondary" onclick="closeModal('customNicheModal')">취소</button>
+        <button class="act-btn primary-copy" onclick="saveNewCustomNiche()">➕ 새 분야 탭 추가</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: GitHub Direct Publish Modal -->
+  <div id="publishModal" class="modal-backdrop" style="display:none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>🚀 GitHub 블로그에 바로 발행</h3>
+        <button class="close-btn" onclick="closeModal('publishModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-note">현재 작성된 블로그 포스트를 독립된 SEO 최적화 HTML 파일로 변환하여 GitHub 저장소에 즉시 커밋·배포합니다.</p>
+        <div class="setting-block">
+          <label class="section-label">GitHub Personal Access Token</label>
+          <input type="password" id="pubGithubToken" class="text-input" placeholder="ghp_... (한 번 입력하면 브라우저에 저장됩니다)" />
+        </div>
+        <div class="row-2col mt-10">
+          <div>
+            <label class="section-label">대상 GitHub 저장소 (Repo)</label>
+            <select id="pubRepoPreset" class="select-input" onchange="onPubRepoPresetChange(this.value)">
+              <option value="intid85/duckcheon-korea">intid85/duckcheon-korea (dctrade.co.kr)</option>
+              <option value="intid85/blog-studio">intid85/blog-studio (GitHub Pages)</option>
+              <option value="custom">직접 입력...</option>
+            </select>
+            <input type="text" id="pubGithubRepo" class="text-input mt-8" value="intid85/duckcheon-korea" />
+          </div>
+          <div>
+            <label class="section-label">발행 파일 경로 (`path`)</label>
+            <input type="text" id="pubFilePath" class="text-input" value="blog/post.html" />
+            <span class="hint-text">예: <code>blog/pdrn-cica-guide.html</code></span>
+          </div>
+        </div>
+        <div class="mt-12">
+          <label class="toggle-row">
+            <input type="checkbox" id="pubUpdateSitemap" checked />
+            <span class="toggle-text">🗺️ 저장소의 <code>sitemap.xml</code>에 새 글 URL 자동 추가</span>
+          </label>
+          <label class="toggle-row">
+            <input type="checkbox" id="pubUpdateBlogIndex" checked />
+            <span class="toggle-text">📑 <code>blog/index.html</code> 목록 페이지에 최신 글 카드 자동 등록 (있는 경우)</span>
+          </label>
+        </div>
+        <div id="publishResultBox" class="pub-result-box" style="display:none;"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="act-btn secondary" onclick="closeModal('publishModal')">닫기</button>
+        <button class="act-btn github-pub" id="confirmPublishBtn" onclick="executeGithubPublish()">🚀 지금 GitHub에 커밋 &amp; 발행</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Saved Drafts Drawer (`🗂️ 내 글 보관함`) -->
+  <div id="draftsModal" class="modal-backdrop" style="display:none;">
+    <div class="modal-card wide-modal">
+      <div class="modal-header">
+        <h3>🗂️ 내 글 보관함 (자동 저장 및 수동 보관 목록)</h3>
+        <button class="close-btn" onclick="closeModal('draftsModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="draftsListContainer" class="drafts-list"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="act-btn secondary" onclick="clearAllDrafts()">🗑️ 전체 비우기</button>
+        <button class="act-btn primary-copy" onclick="closeModal('draftsModal')">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden File Input for Local Photo Upload -->
+  <input type="file" id="hiddenPhotoFileInput" accept="image/*" style="display:none;" onchange="handlePhotoFileSelected(event)" />
+
+  <!-- Toast Notification -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
