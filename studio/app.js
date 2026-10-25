@@ -755,6 +755,7 @@ function buildCleanExportHtml(fullPage = false) {
   <div style="background:#ffffff;max-width:860px;margin:0 auto;padding:36px 28px;border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,0.05);">
     ${bodyContent}
   </div>
+  <script src="https://dctrade.co.kr/assets/dctrade-tracker.js" defer></script>
 </body>
 </html>`;
 }
@@ -819,6 +820,7 @@ function openModal(id) {
   const el = document.getElementById(id);
   if (el) el.style.display = 'flex';
   if (id === 'draftsModal') renderDraftsList();
+  if (id === 'statsModal') renderPrivateStatsModal();
 }
 
 function closeModal(id) {
@@ -1036,3 +1038,103 @@ function showToast(msg) {
 }
 
 window.addEventListener('DOMContentLoaded', initStudio);
+
+
+function fnv1aHex8Studio(str) {
+  let h = 0x811c9dc5;
+  const bytes = new TextEncoder().encode(str);
+  for (let i = 0; i < bytes.length; i++) {
+    h ^= bytes[i];
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return h.toString(16).padStart(8, '0');
+}
+
+function shortSlugStudio(slug) {
+  const clean = String(slug || '').toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '') || 'home';
+  if (clean.length <= 44) return clean;
+  return clean.slice(0, 35) + '_' + fnv1aHex8Studio(clean);
+}
+
+async function getAbacusCount(key) {
+  try {
+    const res = await fetch('https://abacus.jasoncameron.dev/get/dctrade_kr_priv_9616/' + encodeURIComponent(key), { cache: 'no-store' });
+    if (!res.ok) return 0;
+    const data = await res.json();
+    return typeof data.value === 'number' ? data.value : 0;
+  } catch (e) {
+    return 0;
+  }
+}
+
+async function renderPrivateStatsModal() {
+  const wrap = document.getElementById('statsListContainer');
+  if (!wrap) return;
+  wrap.innerHTML = '<p style="color:#64748b;">⏳ 실시간 조회수 데이터를 불러오는 중입니다...</p>';
+
+  const nowKst = new Date(Date.now() + 9 * 3600000);
+  const todayStr = nowKst.toISOString().slice(0, 10);
+  const yestStr = new Date(Date.now() + 9 * 3600000 - 86400000).toISOString().slice(0, 10);
+
+  const pages = [
+    { slug: 'all_blog', label: '🔥 블로그 전체 합계 (All Blog)', isTotalRow: true },
+    { slug: 'home', label: '🏢 공식 홈페이지 메인 (dctrade.co.kr)' },
+    { slug: 'blog-index', label: '📑 영문 블로그 메인 목록 (/blog/)' },
+    { slug: 'centellian24-madeca-cream-tight-lifting-korean-cica-firming-cream', label: '📝 Centellian24 Madeca Cream Tight Lifting' },
+    { slug: 'arocell-super-collagen-mask-2-korean-hydrogel-pack', label: '📝 Arocell Super Collagen Mask 2.0 (43g Hydrogel)' },
+    { slug: 'korean-indie-k-beauty-hidden-gems-2026', label: '📝 Korean Indie & SME K-Beauty Hidden Gems (2026)' },
+    { slug: 'k-beauty-trends-2026-pdrn-cica-exosomes', label: '📝 K-Beauty Trends 2026: PDRN, Exosomes & Cica' }
+  ];
+
+  // Also dynamically discover any newer blog posts from sitemap.xml
+  try {
+    const smRes = await fetch('https://dctrade.co.kr/sitemap.xml', { cache: 'no-store' });
+    if (smRes.ok) {
+      const smText = await smRes.text();
+      const matches = [...smText.matchAll(/https:\/\/dctrade\.co\.kr\/blog\/([a-zA-Z0-9_-]+)\.html/g)];
+      for (const m of matches) {
+        const s = m[1];
+        if (s !== 'index' && !pages.some(p => p.slug === s)) {
+          pages.push({ slug: s, label: '📝 ' + s });
+        }
+      }
+    }
+  } catch (e) {}
+
+  const rows = [];
+  for (const p of pages) {
+    const sKey = p.slug === 'all_blog' ? 'all_blog' : shortSlugStudio(p.slug);
+    const [yVal, tVal, totVal] = await Promise.all([
+      getAbacusCount(`day__${yestStr}__${sKey}`),
+      getAbacusCount(`day__${todayStr}__${sKey}`),
+      getAbacusCount(`total__${sKey}`)
+    ]);
+    rows.push({ ...p, yVal, tVal, totVal: Math.max(totVal, yVal + tVal) });
+  }
+
+  wrap.innerHTML = `
+    <div style="margin-bottom:10px;font-size:12.5px;color:#475569;">
+      기준 일자 (한국시간 KST): <strong>어제(${yestStr})</strong> · <strong>오늘(${todayStr})</strong>
+    </div>
+    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <thead>
+        <tr style="background:#f1f5f9;text-align:left;border-bottom:2px solid #cbd5e1;">
+          <th style="padding:10px;">페이지 / 포스트</th>
+          <th style="padding:10px;text-align:right;">어제 (${yestStr.slice(5)})</th>
+          <th style="padding:10px;text-align:right;">오늘 (${todayStr.slice(5)})</th>
+          <th style="padding:10px;text-align:right;">누적 합계</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows.map(r => `
+          <tr style="border-bottom:1px solid #e2e8f0;${r.isTotalRow ? 'background:#fefce8;font-weight:700;' : ''}">
+            <td style="padding:10px;">${r.label}</td>
+            <td style="padding:10px;text-align:right;color:#d97706;font-weight:600;">${r.yVal}회</td>
+            <td style="padding:10px;text-align:right;color:#0284c7;font-weight:600;">${r.tVal}회</td>
+            <td style="padding:10px;text-align:right;font-weight:700;">${r.totVal}회</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+}
