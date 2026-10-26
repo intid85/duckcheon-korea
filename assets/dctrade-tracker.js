@@ -179,6 +179,7 @@
   }
 
   var KNOWN_POSTS = [
+    { slug: 'iope-super-vital-cream-6th-gen-senomune-korean-anti-aging-cream', title: '✨ 아이오페 슈퍼바이탈 크림 6세대 (IOPE Super Vital Cream)', url: '/blog/iope-super-vital-cream-6th-gen-senomune-korean-anti-aging-cream.html' },
     { slug: 'blog-index', title: '📚 블로그 메인 (dctrade.co.kr/blog/)', url: '/blog/index.html' },
     { slug: 'centellian24-madeca-cream-tight-lifting-korean-cica-firming-cream', title: '✨ 센텔리안24 마데카 크림 타이트 리프팅 (Centellian24 Madeca Cream)', url: '/blog/centellian24-madeca-cream-tight-lifting-korean-cica-firming-cream.html' },
     { slug: 'arocell-super-collagen-mask-2-korean-hydrogel-pack', title: '💧 아로셀 슈퍼 콜라겐 마스크 2.0 (Arocell Super Collagen Mask 2.0)', url: '/blog/arocell-super-collagen-mask-2-korean-hydrogel-pack.html' },
