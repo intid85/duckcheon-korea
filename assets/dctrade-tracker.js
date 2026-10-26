@@ -8,8 +8,39 @@
 (function () {
   'use strict';
 
+  var AMAZON_ASSOCIATE_TAG = ""; // Set Store ID here (e.g. "dctrade-20") to auto-apply to all Amazon links site-wide
   var NAMESPACE = 'dctrade_kr_priv_9616';
   var API_BASE = 'https://abacus.jasoncameron.dev';
+
+  function getActiveAmazonTag() {
+    var tag = (AMAZON_ASSOCIATE_TAG || '').trim();
+    try {
+      var override = (localStorage.getItem('dctrade_amazon_tag') || localStorage.getItem('studio_amazon_tag') || '').trim();
+      if (override) tag = override;
+    } catch (e) {}
+    return tag;
+  }
+
+  function applyAmazonAssociateLinks() {
+    var tag = getActiveAmazonTag();
+    var links = document.querySelectorAll('a[href*="amazon.com"], a[data-amazon-link]');
+    for (var i = 0; i < links.length; i++) {
+      var a = links[i];
+      var rawHref = a.getAttribute('href') || '';
+      if (!rawHref) continue;
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'nofollow sponsored noopener');
+      if (tag) {
+        try {
+          var u = new URL(rawHref, window.location.origin);
+          if (/amazon\./i.test(u.hostname)) {
+            u.searchParams.set('tag', tag);
+            a.setAttribute('href', u.toString());
+          }
+        } catch (e) {}
+      }
+    }
+  }
 
   function fnv1aHex8(str) {
     var h = 0x811c9dc5;
@@ -153,6 +184,12 @@
   }
 
   function init() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyAmazonAssociateLinks);
+    } else {
+      applyAmazonAssociateLinks();
+    }
+
     var params;
     try {
       params = new URLSearchParams(window.location.search || '');
@@ -195,6 +232,9 @@
 
   window.DCTradeTracker = {
     namespace: NAMESPACE,
+    amazonAssociateTag: AMAZON_ASSOCIATE_TAG,
+    getActiveAmazonTag: getActiveAmazonTag,
+    applyAmazonAssociateLinks: applyAmazonAssociateLinks,
     shortSlug: shortSlug,
     getKstDateString: getKstDateString,
     getKey: getKey

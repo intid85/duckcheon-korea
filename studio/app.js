@@ -300,13 +300,43 @@ function generateInstantPost(topic, memo, photoCount = 5) {
         html: `<p>Start by placing two chilled Heartleaf calming toner pads onto the cheeks for 3 minutes to lower skin temperature. Follow with 2–3 drops of fermented rice or PDRN ampoule pressed gently into damp skin. In the morning, finish with two finger-lengths of weightless vegan sun serum; at night, seal in your actives with a ceramide barrier cream or an overnight bio-collagen wrapping mask.</p>`
       }
     ];
+    const includeAmazonBtn = document.getElementById('optKbeautyAmazonBtn')?.checked !== false;
+    const customAmzInput = (document.getElementById('kbeautyAmazonQueryInput')?.value || '').trim();
+    const savedAmazonTag = (localStorage.getItem('dctrade_amazon_tag') || localStorage.getItem('studio_amazon_tag') || '').trim();
+    let amazonUrl = customAmzInput.startsWith('http')
+      ? customAmzInput
+      : `https://www.amazon.com/s?k=${encodeURIComponent(customAmzInput || topic)}`;
+    if (savedAmazonTag) {
+      try {
+        const u = new URL(amazonUrl);
+        u.searchParams.set('tag', savedAmazonTag);
+        amazonUrl = u.toString();
+      } catch (e) {}
+    }
+
+    if (includeAmazonBtn && sections[1]) {
+      sections[1].html += `
+        <div style="margin:22px 0;padding:18px 22px;border-radius:14px;background:linear-gradient(135deg,#FFFBEB 0%,#FEF3C7 50%,#F8FAFC 100%);border:2px solid #F59E0B;">
+          <p style="margin:0 0 6px;font-size:12px;font-weight:800;color:#92400E;text-transform:uppercase;letter-spacing:0.05em;">🛍️ Retail Single-Unit &amp; B2B Wholesale Options</p>
+          <p style="margin:0 0 12px;font-size:14px;color:#1E293B;"><strong>Individual consumers &amp; sample buyers:</strong> Order single units directly on Amazon. <strong>Global B2B distributors:</strong> Contact DUCKCHEON KOREA below for bulk wholesale pricing.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <a href="${amazonUrl}" data-amazon-link="true" target="_blank" rel="nofollow sponsored noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;background:#FF9900;color:#111827;font-weight:800;font-size:13.5px;text-decoration:none;">🛒 Buy on Amazon (Single Unit / Retail) →</a>
+            <a href="#b2b-cta" style="display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;background:#14213D;color:#ffffff;font-weight:700;font-size:13.5px;text-decoration:none;">🏢 Bulk Wholesale Inquiry (MOQ / Export) ↓</a>
+          </div>
+        </div>`;
+    }
+
     if (document.getElementById('optKbeautyCtaCard')?.checked !== false) {
+      const amazonBtnHtml = includeAmazonBtn
+        ? `<a href="${amazonUrl}" data-amazon-link="true" target="_blank" rel="nofollow sponsored noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:8px;background:#FF9900;color:#111827;font-weight:800;font-size:13px;text-decoration:none;">🛒 Buy on Amazon (Single Unit / Retail) →</a>`
+        : '';
       sections.push({
         heading: `4. Source Authentic Korean SME & Indie K-Beauty with DUCKCHEON KOREA`,
-        html: `<div style="background:#0B1D3A;color:#ffffff;border-radius:12px;padding:22px 24px;">
+        html: `<div id="b2b-cta" style="background:#0B1D3A;color:#ffffff;border-radius:12px;padding:22px 24px;">
                  <p style="margin-bottom:8px;font-size:17px;"><strong>🏢 Interested in Sourcing Authentic Korean Cosmetics Directly from Korea?</strong></p>
-                 <p style="margin-bottom:14px;color:rgba(255,255,255,0.88);"><strong>DUCKCHEON KOREA (https://dctrade.co.kr/)</strong> supplies verified, 100% genuine Korean cosmetics directly from South Korea to global buyers and partners. Contact our export and curation desk anytime via <strong>WeChat (intid85)</strong>, <strong>WhatsApp (+82 10-2754-9616)</strong>, or <strong>Email (<a href="mailto:duckcheonkorea@gmail.com" style="color:#fff;text-decoration:underline;">duckcheonkorea@gmail.com</a>)</strong> for wholesale quotes and product inquiries!</p>
+                 <p style="margin-bottom:12px;color:rgba(255,255,255,0.88);"><strong>DUCKCHEON KOREA (https://dctrade.co.kr/)</strong> supplies verified, 100% genuine Korean cosmetics directly from South Korea to global buyers and partners. Individual consumers or buyers looking to test a single retail unit can order directly via <strong>Amazon</strong>, while wholesale and bulk buyers can contact our export desk anytime via <strong>WeChat (intid85)</strong>, <strong>WhatsApp (+82 10-2754-9616)</strong>, or <strong>Email (<a href="mailto:duckcheonkorea@gmail.com" style="color:#fff;text-decoration:underline;">duckcheonkorea@gmail.com</a>)</strong>!</p>
                  <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;">
+                   ${amazonBtnHtml}
                    <a href="https://dctrade.co.kr/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:8px;background:#ffffff;color:#0B1D3A;font-weight:700;font-size:13px;text-decoration:none;">🌐 Official Website: dctrade.co.kr →</a>
                    <a href="https://wa.me/821027549616" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:8px;background:#25D366;color:#ffffff;font-weight:700;font-size:13px;text-decoration:none;">📱 WhatsApp: +82 10-2754-9616</a>
                    <a href="https://dctrade.co.kr/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:8px;background:#07C160;color:#ffffff;font-weight:700;font-size:13px;text-decoration:none;">💬 WeChat ID: intid85</a>
@@ -899,19 +929,24 @@ function saveSettings() {
   localStorage.setItem('studio_fal_key', document.getElementById('settingFalKey').value.trim());
   localStorage.setItem('studio_fal_model', document.getElementById('settingFalModel').value);
   localStorage.setItem('studio_fal_ratio', document.getElementById('settingFalRatio').value);
+  const amzTag = (document.getElementById('settingAmazonTag')?.value || '').trim();
+  localStorage.setItem('studio_amazon_tag', amzTag);
+  localStorage.setItem('dctrade_amazon_tag', amzTag);
   localStorage.setItem('studio_github_token', document.getElementById('settingGithubToken').value.trim());
   localStorage.setItem('studio_github_repo', document.getElementById('settingGithubRepo').value.trim());
   loadSettingsToUI();
   closeModal('settingsModal');
-  showToast('💾 API 및 GitHub 설정이 저장되었습니다.');
+  showToast('💾 API, Amazon Store ID 및 GitHub 설정이 저장되었습니다.');
 }
 
 function loadSettingsToUI() {
   const dsKey = localStorage.getItem('studio_deepseek_key') || '';
   const falKey = localStorage.getItem('studio_fal_key') || '';
+  const amzTag = localStorage.getItem('dctrade_amazon_tag') || localStorage.getItem('studio_amazon_tag') || '';
   const ghToken = localStorage.getItem('studio_github_token') || '';
   if (document.getElementById('settingDeepseekKey')) document.getElementById('settingDeepseekKey').value = dsKey;
   if (document.getElementById('settingFalKey')) document.getElementById('settingFalKey').value = falKey;
+  if (document.getElementById('settingAmazonTag')) document.getElementById('settingAmazonTag').value = amzTag;
   if (document.getElementById('settingGithubToken')) document.getElementById('settingGithubToken').value = ghToken;
 
   document.getElementById('deepseekStatusText').textContent = dsKey ? 'API 연결됨 (실시간)' : '즉시 초안 모드 (무료)';

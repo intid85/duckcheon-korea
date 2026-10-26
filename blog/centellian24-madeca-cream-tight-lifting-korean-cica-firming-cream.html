@@ -84,6 +84,63 @@
     .cta-box h3 { color: #fff; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.75rem; margin-top: 0; }
     .cta-box p { color: rgba(255,255,255,0.88); }
     .cta-btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+    .btn-amazon {
+      background: #FF9900;
+      color: #111827;
+      font-weight: 800;
+      box-shadow: 0 4px 14px rgba(255, 153, 0, 0.28);
+    }
+    .btn-amazon:hover {
+      background: #F59E0B;
+      transform: translateY(-1px);
+    }
+    .retail-buy-box {
+      margin: 26px 0 32px;
+      padding: 22px 26px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 45%, #F8FAFC 100%);
+      border: 2px solid #F59E0B;
+      box-shadow: 0 10px 26px rgba(245, 158, 11, 0.12);
+    }
+    .retail-buy-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .retail-buy-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #92400E;
+      background: rgba(255, 153, 0, 0.2);
+      padding: 4px 11px;
+      border-radius: 999px;
+    }
+    .retail-buy-box h4 {
+      margin: 0 0 6px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .retail-buy-box p {
+      margin: 0 0 14px;
+      font-size: 0.92rem;
+      color: #334155;
+      line-height: 1.55;
+    }
+    .retail-buy-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
     .float-stack {
       position: fixed; right: 22px; bottom: 22px; z-index: 999;
       display: flex; flex-direction: column; gap: 10px; align-items: flex-end;
@@ -374,6 +431,26 @@
         </tbody>
       </table>
 
+      <!-- Dual-Option Retail (Amazon) & B2B Wholesale Box -->
+      <div class="retail-buy-box">
+        <div class="retail-buy-header">
+          <span class="retail-buy-badge">🛍️ Retail Single-Unit &amp; B2B Wholesale Options</span>
+        </div>
+        <h4>Want to Try 1 Unit First, or Source Bulk Quantities from Korea?</h4>
+        <p>
+          <strong>Individual consumers &amp; sample buyers:</strong> Order single retail units directly on Amazon with fast delivery.<br />
+          <strong>Global B2B distributors &amp; retailers:</strong> Contact <strong>DUCKCHEON KOREA</strong> below for bulk export MOQ and wholesale box pricing.
+        </p>
+        <div class="retail-buy-btns">
+          <a href="https://www.amazon.com/s?k=Centellian24+Madeca+Cream+Tight+Lifting" data-amazon-link="true" target="_blank" rel="nofollow sponsored noopener" class="btn btn-amazon" style="background:#FF9900; color:#111827; font-weight:800;">
+            🛒 Buy on Amazon (Single Unit / Retail) →
+          </a>
+          <a href="#b2b-cta" class="btn btn-primary" style="background:var(--navy); color:#fff; font-weight:700;">
+            🏢 Bulk Wholesale Inquiry (MOQ / Export) ↓
+          </a>
+        </div>
+      </div>
+
       <h2>4. How to Use: A Korean Home-Care Routine</h2>
       <div class="routine-box">
         <h3 style="margin-top:0;">✨ 4-Step Routine for Firm, Comfortable Skin</h3>
@@ -390,7 +467,7 @@
       </p>
 
       <!-- Global B2B & Wholesale Sourcing CTA -->
-      <div class="cta-box">
+      <div id="b2b-cta" class="cta-box">
         <h3>Interested in Sourcing Centellian24 Madeca Cream Directly from Korea?</h3>
         <p>
           Looking to source authentic <strong>Centellian24 Madeca Cream All-New Tight Lifting</strong> or other top-selling Korean cica and derma skincare lines for your retail stores, e-commerce channels, or distribution network?
@@ -398,7 +475,11 @@
         <p>
           <strong>DUCKCHEON KOREA (`https://dctrade.co.kr/`)</strong> supplies verified, 100% genuine Korean cosmetics directly from South Korea to global buyers and partners. Contact our export and curation desk anytime via <strong>WeChat (`intid85`)</strong>, <strong>WhatsApp (`+82 10-2754-9616`)</strong>, or <strong>Email (<a href="mailto:duckcheonkorea@gmail.com" style="color:#fff; text-decoration:underline;">duckcheonkorea@gmail.com</a>)</strong> for wholesale quotes and product inquiries!
         </p>
+        <p style="background:rgba(255,153,0,0.14); border:1px solid rgba(255,153,0,0.45); border-radius:12px; padding:12px 15px; font-size:0.93rem; color:#fff; margin-bottom:16px;">
+          🛒 <strong>Single-Unit Retail / Sample Buyers:</strong> Looking to buy a single unit for personal use or product testing? Click <strong>Buy on Amazon</strong> below for immediate retail ordering. For <strong>bulk B2B wholesale &amp; export orders</strong> from South Korea, contact our Seoul desk via WeChat, WhatsApp, or Email!
+        </p>
         <div class="cta-btns">
+          <a href="https://www.amazon.com/s?k=Centellian24+Madeca+Cream+Tight+Lifting" data-amazon-link="true" target="_blank" rel="nofollow sponsored noopener" class="btn btn-amazon" style="background:#FF9900; color:#111827; font-weight:800;">🛒 Buy on Amazon (Retail / Sample) →</a>
           <a href="https://dctrade.co.kr/" class="btn" style="background:#fff; color:var(--navy);">🌐 Official Website: dctrade.co.kr →</a>
           <a href="https://wa.me/821027549616?text=Hello%20DUCKCHEON%20KOREA%2C%20I%20saw%20your%20Centellian24%20Madeca%20Cream%20article%20and%20would%20like%20to%20inquire%20about%20wholesale%20sourcing." target="_blank" rel="noopener noreferrer" class="btn btn-wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.031 2c-5.516 0-9.999 4.486-9.999 10.002 0 1.766.461 3.489 1.337 5.01L2 22l5.122-1.342a9.958 9.958 0 0 0 4.907 1.298h.004c5.515 0 9.998-4.486 9.998-10.002 0-2.672-1.04-5.185-2.928-7.074C17.215 3.04 14.703 2 12.031 2zm5.847 14.294c-.246.693-1.434 1.326-1.995 1.409-.513.077-1.163.109-1.878-.118-.434-.138-.99-.322-1.703-.63-2.997-1.293-4.954-4.31-5.104-4.509-.149-.199-1.219-1.622-1.219-3.094 0-1.472.771-2.196 1.045-2.495.274-.299.597-.374.796-.374.199 0 .398.002.572.01.183.009.429-.07.672.513.249.598.846 2.067.921 2.217.075.149.124.324.025.523-.099.199-.149.324-.299.498-.149.174-.314.389-.448.523-.149.149-.304.312-.131.611.174.299.773 1.275 1.66 2.066 1.141 1.017 2.103 1.332 2.402 1.481.299.149.473.125.647-.075.174-.199.746-.872.945-1.171.199-.299.398-.249.672-.149.274.099 1.742.822 2.041.971.299.149.498.224.572.349.075.125.075.722-.171 1.415z"/></svg> WhatsApp: +82 10-2754-9616</a>
           <button onclick="copyWeChat()" class="btn btn-wc"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.032zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/></svg> WeChat ID: intid85 (Click to Copy)</button>
