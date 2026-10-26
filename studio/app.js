@@ -302,7 +302,7 @@ function generateInstantPost(topic, memo, photoCount = 5) {
     ];
     const includeAmazonBtn = document.getElementById('optKbeautyAmazonBtn')?.checked !== false;
     const customAmzInput = (document.getElementById('kbeautyAmazonQueryInput')?.value || '').trim();
-    const savedAmazonTag = (localStorage.getItem('dctrade_amazon_tag') || localStorage.getItem('studio_amazon_tag') || '').trim();
+    const savedAmazonTag = (localStorage.getItem('dctrade_amazon_tag') || localStorage.getItem('studio_amazon_tag') || 'dctrade-20').trim();
     let amazonUrl = customAmzInput.startsWith('http')
       ? customAmzInput
       : `https://www.amazon.com/s?k=${encodeURIComponent(customAmzInput || topic)}`;
@@ -942,7 +942,7 @@ function saveSettings() {
 function loadSettingsToUI() {
   const dsKey = localStorage.getItem('studio_deepseek_key') || '';
   const falKey = localStorage.getItem('studio_fal_key') || '';
-  const amzTag = localStorage.getItem('dctrade_amazon_tag') || localStorage.getItem('studio_amazon_tag') || '';
+  const amzTag = localStorage.getItem('dctrade_amazon_tag') || localStorage.getItem('studio_amazon_tag') || 'dctrade-20';
   const ghToken = localStorage.getItem('studio_github_token') || '';
   if (document.getElementById('settingDeepseekKey')) document.getElementById('settingDeepseekKey').value = dsKey;
   if (document.getElementById('settingFalKey')) document.getElementById('settingFalKey').value = falKey;
