@@ -8,7 +8,7 @@
 (function () {
   'use strict';
 
-  var AMAZON_ASSOCIATE_TAG = ""; // Set Store ID here (e.g. "dctrade-20") to auto-apply to all Amazon links site-wide
+  var AMAZON_ASSOCIATE_TAG = "dctrade-20"; // Set Store ID here (e.g. "dctrade-20") to auto-apply to all Amazon links site-wide
   var NAMESPACE = 'dctrade_kr_priv_9616';
   var API_BASE = 'https://abacus.jasoncameron.dev';
 
