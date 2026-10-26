@@ -784,6 +784,7 @@ function buildCleanExportHtml(fullPage = false) {
 <body style="background:#f8fafc;padding:32px 16px;margin:0;">
   <div style="background:#ffffff;max-width:860px;margin:0 auto;padding:36px 28px;border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,0.05);">
     ${bodyContent}
+    <section id="dctrade-comments" class="comments-section"></section>
   </div>
   <script src="https://dctrade.co.kr/assets/dctrade-tracker.js" defer></script>
 </body>
