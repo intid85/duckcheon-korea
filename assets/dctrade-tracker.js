@@ -142,19 +142,40 @@
     } catch (e) {}
   }
 
+  var _reqQueue = Promise.resolve();
   function getKey(key) {
-    return fetch(API_BASE + '/get/' + NAMESPACE + '/' + encodeURIComponent(key), {
-      method: 'GET',
-      mode: 'cors',
-      cache: 'no-store'
-    })
-      .then(function (res) {
+    function attemptFetch(triesLeft) {
+      return fetch(API_BASE + '/get/' + NAMESPACE + '/' + encodeURIComponent(key), {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-store'
+      }).then(function (res) {
+        if (res.status === 404) return 0;
+        if (res.status === 429 && triesLeft > 0) {
+          return new Promise(function (r) { setTimeout(r, 450); }).then(function () {
+            return attemptFetch(triesLeft - 1);
+          });
+        }
         if (!res.ok) return 0;
         return res.json().then(function (data) {
           return (data && typeof data.value === 'number') ? data.value : 0;
         });
-      })
-      .catch(function () { return 0; });
+      }).catch(function () {
+        if (triesLeft > 0) {
+          return new Promise(function (r) { setTimeout(r, 400); }).then(function () {
+            return attemptFetch(triesLeft - 1);
+          });
+        }
+        return 0;
+      });
+    }
+    var next = _reqQueue.then(function () {
+      return new Promise(function (r) { setTimeout(r, 95); });
+    }).then(function () {
+      return attemptFetch(3);
+    });
+    _reqQueue = next.catch(function () {});
+    return next;
   }
 
   var KNOWN_POSTS = [
@@ -304,7 +325,7 @@
               slug: item.slug,
               y: v[0],
               t: v[1],
-              total: v[2]
+              total: Math.max(v[2], v[0] + v[1])
             };
           });
         })).then(function (rows) {
