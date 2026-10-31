@@ -179,6 +179,7 @@
   }
 
   var KNOWN_POSTS = [
+    { slug: 'the-whoo-gongjinhyang-royal-3-piece-gift-set-toner-emulsion-korean-luxury-skincare', title: '✨ 더후 공진향 궁중 3종 세트 (The Whoo Gongjinhyang)', url: '/blog/the-whoo-gongjinhyang-royal-3-piece-gift-set-toner-emulsion-korean-luxury-skincare.html' },
     { slug: 'maxclinic-oil-foam-cleanser-310g-korean-oil-to-foam-one-step-cleanser', title: '✨ 맥스클리닉 반전클렌저 오일투폼 (Maxclinic Oil Foam)', url: '/blog/maxclinic-oil-foam-cleanser-310g-korean-oil-to-foam-one-step-cleanser.html' },
     { slug: 'dalba-vita-toning-3-piece-set-toner-serum-capsule-cream', title: '✨ 달바 비타 토닝 3종 세트 (d\'Alba Vita Toning Set)', url: '/blog/dalba-vita-toning-3-piece-set-toner-serum-capsule-cream.html' },
     { slug: 'iope-super-vital-cream-6th-gen-senomune-korean-anti-aging-cream', title: '✨ 아이오페 슈퍼바이탈 크림 6세대 (IOPE Super Vital Cream)', url: '/blog/iope-super-vital-cream-6th-gen-senomune-korean-anti-aging-cream.html' },
