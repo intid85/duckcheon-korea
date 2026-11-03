@@ -179,6 +179,7 @@
   }
 
   var KNOWN_POSTS = [
+    { slug: 'offon-keep-calm-and-cooling-body-wash-korean-salicylic-acid-body-acne-wash', title: '🚿 오프온 킵캄 쿨링 바디워시 (OFFON Keep Calm and Cooling Body Wash)', url: '/blog/offon-keep-calm-and-cooling-body-wash-korean-salicylic-acid-body-acne-wash.html' },
     { slug: 'miracle-muse-aha-bha-medi-cream-korean-dark-spot-brightening-cream', title: '🧴 미라클뮤즈 아하바하 메디크림 (Miracle Muse AHA BHA Medi Cream)', url: '/blog/miracle-muse-aha-bha-medi-cream-korean-dark-spot-brightening-cream.html' },
     { slug: 'dalba-waterfull-vegan-tone-up-sun-cream-spf50-4-colors-korean-sunscreen', title: '☀️ 달바 워터풀 톤업 선크림 (d\'Alba Waterfull Tone-Up)', url: '/blog/dalba-waterfull-vegan-tone-up-sun-cream-spf50-4-colors-korean-sunscreen.html' },
     { slug: 'the-whoo-gongjinhyang-royal-3-piece-gift-set-toner-emulsion-korean-luxury-skincare', title: '✨ 더후 공진향 궁중 3종 세트 (The Whoo Gongjinhyang)', url: '/blog/the-whoo-gongjinhyang-royal-3-piece-gift-set-toner-emulsion-korean-luxury-skincare.html' },
