@@ -179,6 +179,7 @@
   }
 
   var KNOWN_POSTS = [
+    { slug: 'centellian24-the-madeca-cream-season-6-korean-centella-cica-cream', title: '🌿 센텔리안24 더 마데카 크림 시즌6 (Centellian24 The Madeca Cream)', url: '/blog/centellian24-the-madeca-cream-season-6-korean-centella-cica-cream.html' },
     { slug: 'offon-keep-calm-and-cooling-body-wash-korean-salicylic-acid-body-acne-wash', title: '🚿 오프온 킵캄 쿨링 바디워시 (OFFON Keep Calm and Cooling Body Wash)', url: '/blog/offon-keep-calm-and-cooling-body-wash-korean-salicylic-acid-body-acne-wash.html' },
     { slug: 'miracle-muse-aha-bha-medi-cream-korean-dark-spot-brightening-cream', title: '🧴 미라클뮤즈 아하바하 메디크림 (Miracle Muse AHA BHA Medi Cream)', url: '/blog/miracle-muse-aha-bha-medi-cream-korean-dark-spot-brightening-cream.html' },
     { slug: 'dalba-waterfull-vegan-tone-up-sun-cream-spf50-4-colors-korean-sunscreen', title: '☀️ 달바 워터풀 톤업 선크림 (d\'Alba Waterfull Tone-Up)', url: '/blog/dalba-waterfull-vegan-tone-up-sun-cream-spf50-4-colors-korean-sunscreen.html' },
