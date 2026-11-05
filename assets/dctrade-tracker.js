@@ -179,6 +179,7 @@
   }
 
   var KNOWN_POSTS = [
+    { slug: 'iope-super-vital-softener-emulsion-6th-gen-korean-anti-aging-skincare-set', title: '✨ 아이오페 슈퍼바이탈 소프너&에멀젼 6세대 (IOPE Super Vital Softener & Emulsion)', url: '/blog/iope-super-vital-softener-emulsion-6th-gen-korean-anti-aging-skincare-set.html' },
     { slug: 'centellian24-the-madeca-cream-season-6-korean-centella-cica-cream', title: '🌿 센텔리안24 더 마데카 크림 시즌6 (Centellian24 The Madeca Cream)', url: '/blog/centellian24-the-madeca-cream-season-6-korean-centella-cica-cream.html' },
     { slug: 'offon-keep-calm-and-cooling-body-wash-korean-salicylic-acid-body-acne-wash', title: '🚿 오프온 킵캄 쿨링 바디워시 (OFFON Keep Calm and Cooling Body Wash)', url: '/blog/offon-keep-calm-and-cooling-body-wash-korean-salicylic-acid-body-acne-wash.html' },
     { slug: 'miracle-muse-aha-bha-medi-cream-korean-dark-spot-brightening-cream', title: '🧴 미라클뮤즈 아하바하 메디크림 (Miracle Muse AHA BHA Medi Cream)', url: '/blog/miracle-muse-aha-bha-medi-cream-korean-dark-spot-brightening-cream.html' },
