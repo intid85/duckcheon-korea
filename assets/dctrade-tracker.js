@@ -179,6 +179,7 @@
   }
 
   var KNOWN_POSTS = [
+    { slug: 'sulwhasoo-essential-firming-3-piece-set-korean-luxury-skincare-gift-set', title: '💎 설화수 탄력 3종 기획세트 (Sulwhasoo Essential Firming Set)', url: '/blog/sulwhasoo-essential-firming-3-piece-set-korean-luxury-skincare-gift-set.html' },
     { slug: 'centellian24-madeca-cream-time-reverse-zero-korean-sensitive-skin-cream', title: '🌿 센텔리안24 마데카 크림 타임 리버스 제로 (Centellian24 Time Reverse Zero)', url: '/blog/centellian24-madeca-cream-time-reverse-zero-korean-sensitive-skin-cream.html' },
     { slug: 'dalba-vita-toning-mist-serum-8-korean-vitamin-spray-serum-duo', title: '✨ 달바 비타 토닝 미스트 (d’Alba Vita Toning Mist Serum)', url: '/blog/dalba-vita-toning-mist-serum-8-korean-vitamin-spray-serum-duo.html' },
     { slug: 'drg-black-snail-cream-korean-snail-mucin-moisturizer-duo', title: '✨ 닥터지 블랙 스네일 크림 (Dr.G Black Snail Cream)', url: '/blog/drg-black-snail-cream-korean-snail-mucin-moisturizer-duo.html' },
